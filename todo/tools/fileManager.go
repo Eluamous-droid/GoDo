@@ -21,7 +21,7 @@ func SaveToFile(input string){
 }
 
 func ensureBaseDir(fpath string) error {
-    baseDir := path.Dir(fpath)
+    baseDir := path.Dir(os.ExpandEnv(fpath))
     info, err := os.Stat(baseDir)
     if err == nil && info.IsDir() {
        return nil
