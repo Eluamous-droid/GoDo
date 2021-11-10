@@ -16,7 +16,8 @@ func ReadInput(){
     if *textPtr == "" {
         flag.PrintDefaults()
         os.Exit(1)
+		
     }
-
+	SaveToFile(*textPtr)
     fmt.Printf("textPtr: %s, metricPtr: %s, uniquePtr: %t\n", *textPtr, *metricPtr, *uniquePtr)
 }
