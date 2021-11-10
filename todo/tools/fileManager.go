@@ -16,8 +16,6 @@ func SaveToFile(input string){
 
 	check(err2)
 	f.Sync()
-
-
 }
 
 func ensureBaseDir(fpath string) error {
