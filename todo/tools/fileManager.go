@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path"
+	"strings"
 )
 
 var filePath string = os.ExpandEnv("$HOME/.todocli/")
@@ -26,8 +27,12 @@ func ReadTodos(){
 	ensureBaseDir(filePath)
 	f,err := os.ReadFile(filePath+fileName)
 	check(err)
-
-	fmt.Print(string(f))
+	todos := strings.Split(string(f),"\n")
+	todos = todos[0:len(todos)-1]
+	for i , s := range todos{
+		fmt.Println(i+1, ": ", s)
+	}
+	
 
 }
 
