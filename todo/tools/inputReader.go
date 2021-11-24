@@ -3,6 +3,7 @@ package tools
 import (
 	"flag"
 	"os"
+	"strconv"
 )
 
 
@@ -12,9 +13,15 @@ func ReadInput(){
 
     switch args[0] {
     case "list":
-        ReadTodos()
+        PrintTodos()
+    case "delete":
+        if input, err := strconv.Atoi(args[1]); err == nil{
+        DeleteFromFile(input)
+        } else {
+            println("Please put the index of the todo youre trying to delete")
+        }
     default:
-    SaveToFile(args[0])
+    AppendToFile(args[0])
     }
 
     flag.Parse()
