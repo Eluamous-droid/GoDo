@@ -15,9 +15,8 @@ func AppendToFile(input string){
 	f,err := os.OpenFile(filePath+fileName, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0600)
 	check(err)
 	defer f.Close()
-
+	
 	_,err2 := f.WriteString(input + " \n")
-
 	check(err2)
 	f.Sync()
 }
@@ -35,13 +34,12 @@ func WriteToFile(input string){
 	f.Sync()
 }
 
-
 func ReadTodosFromFile() []string {
 	ensureBaseDir(filePath)
 	f,err := os.ReadFile(filePath+fileName)
 	check(err)
 	todos := strings.Split(string(f),"\n")
-	todos = todos[0:len(todos)-1]
+	//todos = todos[0:len(todos)-1]
 	return todos
 }
 
