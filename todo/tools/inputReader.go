@@ -12,9 +12,8 @@ func ReadInput(){
     args := os.Args[1:]
 
     switch args[0] {
-    case "list":
-        
-    AppendToFile(args[0])
+    case "add": 
+        AppendToFile(args[0])
     case "delete":
         if input, err := strconv.Atoi(args[1]); err == nil{
         DeleteFromFile(input)
@@ -26,5 +25,4 @@ func ReadInput(){
     }
 
     flag.Parse()
-	
 }
