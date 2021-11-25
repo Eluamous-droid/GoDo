@@ -13,7 +13,8 @@ func ReadInput(){
 
     switch args[0] {
     case "list":
-        PrintTodos()
+        
+    AppendToFile(args[0])
     case "delete":
         if input, err := strconv.Atoi(args[1]); err == nil{
         DeleteFromFile(input)
@@ -21,7 +22,7 @@ func ReadInput(){
             println("Please put the index of the todo youre trying to delete")
         }
     default:
-    AppendToFile(args[0])
+    PrintTodos()
     }
 
     flag.Parse()
