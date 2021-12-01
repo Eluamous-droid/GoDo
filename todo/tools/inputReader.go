@@ -21,12 +21,14 @@ func ReadInput() {
 			} else {
 				fmt.Println("Missing todo to add")
 			}
-		case "delete":
+		case "rm":
 			if input, err := strconv.Atoi(args[1]); err == nil {
 				deleteFromFile(input)
 			} else {
 				fmt.Println("Please put the index of the todo youre trying to delete")
 			}
+		default:
+			fmt.Println("Please use a valid command")
 		}
 	}
 
