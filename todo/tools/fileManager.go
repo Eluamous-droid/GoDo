@@ -28,7 +28,7 @@ func WriteToFile(input string) {
 	f, err := os.OpenFile(filePath+fileName, os.O_WRONLY|os.O_CREATE, 0600)
 	check(err)
 	defer f.Close()
-	_, err2 := f.WriteString(input + " \n")
+	_, err2 := f.WriteString(input)
 
 	check(err2)
 	f.Sync()
