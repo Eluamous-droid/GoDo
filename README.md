@@ -1,2 +1,2 @@
 # ToDoCLI
-Testing git install
+Doing stuff in go to try things out
