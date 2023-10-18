@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-var filePath string = os.ExpandEnv("$HOME/.todocli/")
+var filePath string = os.ExpandEnv("$HOME/.godo/")
 var fileName string = "todos.txt"
 
 func AppendToFile(input string) {
