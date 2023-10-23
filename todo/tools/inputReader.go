@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os"
 	"strconv"
+
+	"github.com/eluamous-droid/godo/remote"
 )
 
 func ReadInput() {
@@ -26,6 +28,12 @@ func ReadInput() {
 				deleteFromFile(input)
 			} else {
 				fmt.Println("Please put the index of the todo youre trying to delete")
+			}
+		case "remote":
+			var items []remote.TodoItem
+			items = remote.GetAllItemsInGroup("work")
+			for _, item := range items {
+				println("Group: " + item.Group + " Task: " + item.Task)
 			}
 		default:
 			fmt.Println("Please use a valid command")
