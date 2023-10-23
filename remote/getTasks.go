@@ -5,11 +5,15 @@ import (
 	"encoding/json"
 	"io"
 	"net/http"
+
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
+
+var url = "http://localhost:8080"
 
 func GetAllItems() []TodoItem {
 
-	resp, err := http.Get("http://localhost:8080/getAllItems")
+	resp, err := http.Get(url + "/getAllItems")
 	if err != nil {
 		panic(err)
 	}
@@ -28,9 +32,9 @@ func GetAllItems() []TodoItem {
 
 func GetAllItemsInGroup(group string) []TodoItem {
 
-	url := "http://localhost:8080/getAllItemsInGroup"
+	actualUrl := url + "/getAllItemsInGroup"
 	var jsonInput = []byte(`{"group":"` + group + `"}`)
-	req, err := http.NewRequest("GET", url, bytes.NewBuffer(jsonInput))
+	req, err := http.NewRequest("GET", actualUrl, bytes.NewBuffer(jsonInput))
 	req.Header.Set("Content-Type", "application/json")
 	client := &http.Client{}
 	resp, err := client.Do(req)
@@ -49,4 +53,33 @@ func GetAllItemsInGroup(group string) []TodoItem {
 	}
 
 	return items
+}
+
+func MarkItemComplete(id primitive.ObjectID) {
+	actualUrl := url + "/markItemComplete"
+	var jsonInput = []byte(`{"_id":"` + id.String() + `"}`)
+	req, err := http.NewRequest("POST", actualUrl, bytes.NewBuffer(jsonInput))
+	req.Header.Set("Content-Type", "application/json")
+	if err != nil {
+		panic(err)
+	}
+	client := &http.Client{}
+	client.Do(req)
+
+}
+
+func AddItem(item TodoItem) {
+	actualUrl := url + "/addItem"
+	jsonInput, err := json.Marshal(item)
+	if err != nil {
+		panic(err)
+	}
+	req, err := http.NewRequest("POST", actualUrl, bytes.NewBuffer(jsonInput))
+	req.Header.Set("Content-Type", "application/json")
+	if err != nil {
+		panic(err)
+	}
+	client := &http.Client{}
+	client.Do(req)
+
 }
