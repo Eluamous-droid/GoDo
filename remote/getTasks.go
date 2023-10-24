@@ -5,8 +5,6 @@ import (
 	"encoding/json"
 	"io"
 	"net/http"
-
-	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 var url = "http://localhost:8080"
@@ -55,9 +53,9 @@ func GetAllItemsInGroup(group string) []TodoItem {
 	return items
 }
 
-func MarkItemComplete(id primitive.ObjectID) {
+func MarkItemComplete(id string) {
 	actualUrl := url + "/markItemComplete"
-	var jsonInput = []byte(`{"_id":"` + id.String() + `"}`)
+	var jsonInput = []byte(`{"_id":"` + id + `"}`)
 	req, err := http.NewRequest("POST", actualUrl, bytes.NewBuffer(jsonInput))
 	req.Header.Set("Content-Type", "application/json")
 	if err != nil {

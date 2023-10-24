@@ -7,8 +7,6 @@ import (
 	"strconv"
 
 	"github.com/eluamous-droid/godo/remote"
-	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 func ReadInput() {
