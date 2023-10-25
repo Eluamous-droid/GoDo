@@ -29,12 +29,6 @@ func main() {
 			} else {
 				fmt.Println("Please put the index of the todo youre trying to delete")
 			}
-		case "remote":
-			var items []remote.TodoItem
-			items = remote.GetAllItemsInGroup("work")
-			for _, item := range items {
-				println("Group: " + item.Group + " Task: " + item.Task)
-			}
 		default:
 			fmt.Println("Please use a valid command")
 		}
@@ -44,13 +38,11 @@ func main() {
 }
 func printTodos() {
 	todos := tools.ReadTodosFromFile()
-	for i := 0; i < len(todos)-1; i++ {
-		fmt.Println(i, " "+todos[i])
+	for _, item := range todos {
+		println("Group: " + item.Group + " Task: " + item.Task)
 	}
 }
 
 func deleteFromFile(index int) {
 	todos := tools.ReadTodosFromFile()
-	todos = tools.RemoveIndexFromArray(todos, index)
-	tools.WriteToFile(tools.BuildStringFromArray(todos))
 }
