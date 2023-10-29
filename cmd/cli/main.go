@@ -6,8 +6,7 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/eluamous-droid/godo/remote"
-	"github.com/eluamous-droid/godo/todo/tools"
+	"github.com/eluamous-droid/godo/pkg/tools"
 )
 
 func main() {
@@ -44,5 +43,5 @@ func printTodos() {
 }
 
 func deleteFromFile(index int) {
-	todos := tools.ReadTodosFromFile()
+	//todos := tools.ReadTodosFromFile()
 }

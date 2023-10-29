@@ -4,9 +4,8 @@ import (
 	"encoding/json"
 	"os"
 	"path"
-	"strings"
 
-	"github.com/eluamous-droid/godo/remote"
+	"github.com/eluamous-droid/godo/pkg/models"
 )
 
 var filePath string = os.ExpandEnv("$HOME/.godo/")
@@ -37,12 +36,12 @@ func WriteToFile(input string) {
 	f.Sync()
 }
 
-func ReadTodosFromFile() []remote.TodoItem {
+func ReadTodosFromFile() []models.TodoItem {
 	ensureBaseDir(filePath)
 	f, err := os.ReadFile(filePath + fileName)
 	check(err)
 
-	var todos []remote.TodoItem
+	var todos []models.TodoItem
 	err = json.Unmarshal(f, &todos)
 	check(err)
 	//todos = todos[0:len(todos)-1]

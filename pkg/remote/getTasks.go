@@ -5,11 +5,13 @@ import (
 	"encoding/json"
 	"io"
 	"net/http"
+
+	"github.com/eluamous-droid/godo/pkg/models"
 )
 
 var url = "http://localhost:8080"
 
-func GetAllItems() []TodoItem {
+func GetAllItems() []models.TodoItem {
 
 	resp, err := http.Get(url + "/getAllItems")
 	if err != nil {
@@ -20,7 +22,7 @@ func GetAllItems() []TodoItem {
 	if err != nil {
 		panic(err)
 	}
-	var items []TodoItem
+	var items []models.TodoItem
 	if err != json.Unmarshal(body, &items) {
 		panic(err)
 	}
@@ -28,7 +30,7 @@ func GetAllItems() []TodoItem {
 	return items
 }
 
-func GetAllItemsInGroup(group string) []TodoItem {
+func GetAllItemsInGroup(group string) []models.TodoItem {
 
 	actualUrl := url + "/getAllItemsInGroup"
 	var jsonInput = []byte(`{"group":"` + group + `"}`)
@@ -45,7 +47,7 @@ func GetAllItemsInGroup(group string) []TodoItem {
 	if err != nil {
 		panic(err)
 	}
-	var items []TodoItem
+	var items []models.TodoItem
 	if err != json.Unmarshal(body, &items) {
 		panic(err)
 	}
@@ -66,7 +68,7 @@ func MarkItemComplete(id string) {
 
 }
 
-func AddItem(item TodoItem) {
+func AddItem(item models.TodoItem) {
 	actualUrl := url + "/addItem"
 	jsonInput, err := json.Marshal(item)
 	if err != nil {

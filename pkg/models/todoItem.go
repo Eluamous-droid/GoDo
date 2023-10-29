@@ -1,10 +1,12 @@
-package remote
+package models
+
+import "go.mongodb.org/mongo-driver/bson/primitive"
 
 type TodoItem struct {
-	Id     string     `json:"_id"`
-	Group  string     `json:"group"`
-	Task   string     `json:"task"`
-	Status TaskStatus `json:"status"`
+	Id     primitive.ObjectID `bson:"_id"`
+	Group  string             `json:"group"`
+	Task   string             `json:"task"`
+	Status TaskStatus         `json:"status"`
 }
 type TaskStatus int64
 
