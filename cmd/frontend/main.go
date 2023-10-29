@@ -4,12 +4,13 @@ import (
 	"net/http"
 
 	"github.com/a-h/templ"
+	"github.com/eluamous-droid/godo/pkg/remote"
 	"github.com/eluamous-droid/godo/pkg/web"
 )
 
 func main() {
 
-	component := web.Hello("Mikkel")
+	component := web.ListItems(remote.GetAllItems())
 
 	http.Handle("/", templ.Handler(component))
 

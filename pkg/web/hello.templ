@@ -1,6 +1,18 @@
 package web
 
-templ Hello(name string){
-	<div>Hello, {name} </div>
+import (
+	"github.com/eluamous-droid/godo/pkg/models"
+)
+
+templ Hello(name string) {
+	<div>Hello, { name } </div>
+}
+
+templ ListItems(items []models.TodoItem) {
+	<ul>	  
+  	for _, item := range items {
+    <li>{ item.Task }</li>
+  }
+  </ul>
 
 }
