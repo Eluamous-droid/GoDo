@@ -6,6 +6,7 @@ package command
 import (
 	"fmt"
 
+	"github.com/eluamous-droid/godo/pkg/remote"
 	"github.com/spf13/cobra"
 )
 
@@ -36,4 +37,9 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// updateCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+}
+
+func updateTodos() {
+	items := remote.GetAllItems()
+
 }
