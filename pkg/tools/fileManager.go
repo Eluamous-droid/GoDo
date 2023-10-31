@@ -11,28 +11,15 @@ import (
 var filePath string = os.ExpandEnv("$HOME/.godo/")
 var fileName string = "todos.txt"
 
-func AppendToFile(input string) {
-
+func WriteToFile(item models.TodoItem) {
 	ensureBaseDir(filePath)
+
 	f, err := os.OpenFile(filePath+fileName, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0600)
 	check(err)
 	defer f.Close()
+	input, _ := json.Marshal(item)
+	f.Write(input)
 
-	_, err2 := f.WriteString(input + " \n")
-	check(err2)
-	f.Sync()
-}
-
-func WriteToFile(input string) {
-	ensureBaseDir(filePath)
-
-	clearFile(filePath + fileName)
-	f, err := os.OpenFile(filePath+fileName, os.O_WRONLY|os.O_CREATE, 0600)
-	check(err)
-	defer f.Close()
-	_, err2 := f.WriteString(input)
-
-	check(err2)
 	f.Sync()
 }
 

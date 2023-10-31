@@ -4,8 +4,8 @@ Copyright © 2023 NAME HERE <EMAIL ADDRESS>
 package command
 
 import (
-	"fmt"
-
+	"github.com/eluamous-droid/godo/pkg/models"
+	"github.com/eluamous-droid/godo/pkg/tools"
 	"github.com/spf13/cobra"
 )
 
@@ -20,7 +20,7 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("add called")
+		AddTask(args[0], args[1])
 	},
 }
 
@@ -36,4 +36,9 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// addCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+}
+
+func AddTask(group string, task string) {
+	item := models.NewTodoItem(group, task)
+	tools.WriteToFile(*item)
 }
