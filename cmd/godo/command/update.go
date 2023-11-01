@@ -6,6 +6,8 @@ package command
 import (
 	"fmt"
 
+	"github.com/eluamous-droid/godo/pkg/remote"
+	"github.com/eluamous-droid/godo/pkg/tools"
 	"github.com/spf13/cobra"
 )
 
@@ -39,6 +41,11 @@ func init() {
 }
 
 func updateTodos() {
-	//	items := remote.GetAllItems()
+	remoteTasks := remote.GetAllItems()
+	allTasks := tools.ReadTodosFromFile()
+	for _, task := range remoteTasks {
+		allTasks = tools.AppendToTasks(allTasks, task)
+	}
+	tools.WriteTasksToFile(allTasks)
 
 }
