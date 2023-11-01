@@ -6,7 +6,6 @@ package command
 import (
 	"fmt"
 
-	"github.com/eluamous-droid/godo/pkg/remote"
 	"github.com/spf13/cobra"
 )
 
@@ -40,6 +39,6 @@ func init() {
 }
 
 func updateTodos() {
-	items := remote.GetAllItems()
+	//	items := remote.GetAllItems()
 
 }

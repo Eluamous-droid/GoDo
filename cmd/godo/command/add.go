@@ -40,5 +40,7 @@ func init() {
 
 func AddTask(group string, task string) {
 	item := models.NewTodoItem(group, task)
-	tools.WriteToFile(*item)
+	oldTasks := tools.ReadTodosFromFile()
+	allTasks := tools.AppendToTasks(oldTasks, *item)
+	tools.WriteTasksToFile(allTasks)
 }
