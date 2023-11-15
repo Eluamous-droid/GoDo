@@ -5,6 +5,7 @@ package command
 
 import (
 	"os"
+	"strconv"
 
 	"github.com/eluamous-droid/godo/pkg/tools"
 	"github.com/spf13/cobra"
@@ -13,18 +14,13 @@ import (
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "cli",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Todo application that syncs tasks between machines",
+	Long: `Todo app written in go, is synced with the api server if that is running`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
-		for _, item := range tools.ReadTodosFromFile().TodoItems {
-			println("Group: " + item.Group + " Task: " + item.Task)
+		for i, item := range tools.ReadTodosFromFile().TodoItems {
+			println(strconv.Itoa(i) + ": Group: " + item.Group + " Task: " + item.Task)
 		}
 	},
 }

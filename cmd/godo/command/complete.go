@@ -6,6 +6,8 @@ package command
 import (
 	"fmt"
 
+	"github.com/eluamous-droid/godo/pkg/models"
+	"github.com/eluamous-droid/godo/pkg/tools"
 	"github.com/spf13/cobra"
 )
 
@@ -36,4 +38,11 @@ func init() {
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
 	// completeCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+}
+
+
+func completeTask(index int){
+	todos := tools.ReadTodosFromFile()
+	todos.TodoItems[index].Status = models.Done
+	tools.WriteTasksToFile(todos)
 }
